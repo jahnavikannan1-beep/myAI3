@@ -4,14 +4,6 @@ import { wrapLanguageModel, extractReasoningMiddleware } from "ai";
 
 export const MODEL = openai('gpt-4.1');
 
-// If you want to use a Fireworks model, uncomment the following code and set the FIREWORKS_API_KEY in Vercel
-// NOTE: Use middleware when the reasoning tag is different than think. (Use ChatGPT to help you understand the middleware)
-// export const MODEL = wrapLanguageModel({
-//     model: fireworks('fireworks/deepseek-r1-0528'),
-//     middleware: extractReasoningMiddleware({ tagName: 'think' }), // Use this only when using Deepseek
-// });
-
-
 function getDateAndTime(): string {
     const now = new Date();
     const dateStr = now.toLocaleDateString('en-US', {
@@ -20,20 +12,33 @@ function getDateAndTime(): string {
         month: 'long',
         day: 'numeric'
     });
+
     const timeStr = now.toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
         timeZoneName: 'short'
     });
-    return `The day today is ${dateStr} and the time right now is ${timeStr}.`;
+
+    return The day today is ${dateStr} and the time right now is ${timeStr}.;
 }
 
 export const DATE_AND_TIME = getDateAndTime();
 
-export const AI_NAME = "DemoBot";
-export const OWNER_NAME = "Jahnavi Kannan";
+export const AI_NAME = "PrepEdge";
+export const OWNER_NAME = "Jahnavi Kannan & N B Mounika";
 
-export const WELCOME_MESSAGE = `Hello! I'm ${AI_NAME}, an AI assistant created by ${OWNER_NAME}.`
+export const WELCOME_MESSAGE = `
+Hello! I'm ${AI_NAME}, your mock interview partner for MBA placements created by ${OWNER_NAME}.
+I conduct realistic, technical interview simulations to help you strengthen your concepts, business understanding, and overall placement readiness. 
+Whenever you're ready, type "Start".
+`;
+
+export const INITIAL_ASSISTANT_MESSAGE = [
+    {
+        role: "assistant",
+        content: WELCOME_MESSAGE
+    }
+];
 
 export const CLEAR_CHAT_TEXT = "New";
 
